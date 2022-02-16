@@ -48,7 +48,7 @@ case $COMMAND in
     ;;
   'start')
     echo "start dockbert traefik in background"
-    # docker-compose up -d
+    docker-compose up -d
     ;;
   'stop')
     echo "stop the dockbert traefik"
