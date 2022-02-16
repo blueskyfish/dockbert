@@ -3,6 +3,15 @@
 # Start / Stop the dockbert "traefik" service
 #
 
+echo '______           _    _               _'
+echo '|  _  \         | |  | |             | |'
+echo '| | | |___   ___| | _| |__   ___ _ __| |_'
+echo '| | | / _ \ / __| |/ / '_ \ / _ \ '__| __|'
+echo '| |/ / (_) | (__|   <| |_) |  __/ |  | |_'
+echo '|___/ \___/ \___|_|\_\_.__/ \___|_|   \__|'
+echo '                                          '
+
+
 COMMAND="${1:-help}"
 
 #
@@ -11,7 +20,7 @@ COMMAND="${1:-help}"
 DOCKBERT_ENV=${HOME}/dockbert.env
 
 if [ -f "${DOCKBERT_ENV}" ]; then
-  echo "Found dockbert.env and use it"
+  echo "[info] Found dockbert.env and use it ..."
   source ${DOCKBERT_ENV}
 fi
 
@@ -43,15 +52,15 @@ fi
 
 case $COMMAND in
   'debug')
-    echo "start the dockbert traefik. Stop with Crl+C"
+    echo "[info] start the dockbert traefik. Stop with Crl+C"
     docker-compose up
     ;;
   'start')
-    echo "start dockbert traefik in background"
+    echo "[info] start dockbert traefik in background"
     docker-compose up -d
     ;;
   'stop')
-    echo "stop the dockbert traefik"
+    echo "[info] stop the dockbert traefik"
     docker-compose down
     ;;
   'help')
