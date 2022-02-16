@@ -2,7 +2,6 @@
 #
 # Start / Stop the dockbert "traefik" service
 #
-set -e
 
 COMMAND="${1:-help}"
 
@@ -11,23 +10,33 @@ COMMAND="${1:-help}"
 #
 DOCKBERT_ENV=${HOME}/dockbert.env
 
-if [ -f "$DOCKBERT_ENV" ]; then
+if [ -f "${DOCKBERT_ENV}" ]; then
   echo "Found dockbert.env and use it"
-  source $DOCKBERT_ENV
+  source ${DOCKBERT_ENV}
 fi
 
 
-if [ ! "${COMMAND}" = "help" ]; then
+if [ "${COMMAND}" != "help" ]; then
   MISSING=0
-  for ENV_VAR in DOCKBERT_DOMAIN DOCKBERT_USERS_FILE DOCKBERT_ACME_EMAIL DOCKBERT_ACME_PATH  ; do
-    # Check Environment Variables
-    if [[ -n ${ENV_VAR} ]]; then
-      echo "[Error] missing the environment ${ENV_VAR}"
-      MISSING=1
-    fi
-  done
 
-  if [ $MISSING = 1 ]; then
+  if [[ -z "${DOCKBERT_DOMAIN}" ]]; then
+    echo "[Error] missing the environment 'DOCKBERT_DOMAIN'"
+    MISSING=1
+  fi;
+  if [[ -z "${DOCKBERT_USERS_FILE}" ]]; then
+    echo "[Error] missing the environment 'DOCKBERT_USERS_FILE'"
+    MISSING=1
+  fi;
+  if [[ -z "${DOCKBERT_ACME_EMAIL}" ]]; then
+    echo "[Error] missing the environment 'DOCKBERT_ACME_EMAIL'"
+    MISSING=1
+  fi;
+  if [[ -z "${DOCKBERT_ACME_PATH}" ]]; then
+    echo "[Error] missing the environment 'DOCKBERT_ACME_PATH'"
+    MISSING=1
+  fi;
+
+  if [ ${MISSING} = 1 ]; then
     exit 1;
   fi
 fi
@@ -39,7 +48,7 @@ case $COMMAND in
     ;;
   'start')
     echo "start dockbert traefik in background"
-    docker-compose up -d
+    # docker-compose up -d
     ;;
   'stop')
     echo "stop the dockbert traefik"
