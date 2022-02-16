@@ -3,7 +3,7 @@
 
 # Dockbert
 
-> A simple [Traefik](traefik) Setup.
+> A simple [Traefik][traefik] Setup.
 
 ## Table of Content
 
@@ -20,7 +20,7 @@
 ## Requirement
 
 * A linux server (e.g Debian or Ubunutu)
-* [Docker CE](docker) installed in the server
+* [Docker CE][docker] installed in the server
 * User are able to run docker commands
 * The Apache utils and program `htpasswd` for generates the basic auth
 
@@ -32,8 +32,8 @@ The docker compose files is required some environment variables for start the Tr
 * `DOCKBERT_DOMAIN` The domain for the dashboard
 * `DOCKBERT_CONTAINER_NAME` The container name. This is optional, default `dockbert-traefik`.
 * `DOCKBERT_USERS_FILE` The file with the user authorization (see section [Basic Auth User](#basic-auth-user))
-* `DOCKBERT_ACME_EMAIL` The email address for [Let's Encrypt](letsencrypt)
-* `DOCKBERT_ACME_PATH` The directory where saving the [Let's Encrypt](letsencrypt) the data
+* `DOCKBERT_ACME_EMAIL` The email address for [Let's Encrypt][letsencrypt]
+* `DOCKBERT_ACME_PATH` The directory where saving the [Let's Encrypt][letsencrypt] the data
 
 > The environment variables are setting in different kind:
 >
