@@ -73,6 +73,13 @@ $ dockbert stop
 
 ## Basic Auth User
 
+> The dashboard is secured with BasicAuth. See [Traefik BasicAuth](https://doc.traefik.io/traefik/middlewares/http/basicauth/).
+> To do this, create a file on the Docker host with apache `htpasswd`.
+> 
+> The environment `DOCKBERT_USERS_FILE` is linked with this file
+
+**Example**
+
 The user file `${HOME}/etc/users.passwd`.
 
 ```shell
@@ -81,6 +88,11 @@ $ htpasswd -cb ./etc/users.passwd sarah password
 
 
 ## Let's Encrypt
+
+> The configuration of the certificate directory is defined via the environment `DOCKBERT_ACME_PATH`.
+> An email address is also required for this purpose via environment `DOCKBERT_ACME_EMAIL`.
+
+**Example**
 
 The directory `${HOME}/etc/traefik/acme` contains the acme.json file
 
@@ -92,7 +104,7 @@ $ mkdir -p etc/traefik/acme
 
 * Docker & Docker Compose: <https://www.docker.com/>
 * Traefik: <https://doc.traefik.io/traefik/>
-* Logo: <a href="https://www.flaticon.com/free-icons/duck" title="duck icons">Duck icons created by Pixel perfect - Flaticon</a>
+* Logo: <a href="https://www.flaticon.com/free-icons/duck" title="duck icons" target="_blank">Duck icons created by Pixel perfect - Flaticon</a>
 
 ## License
 
