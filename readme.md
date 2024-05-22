@@ -1,4 +1,3 @@
-
 ![Dockbert](logo.png)
 
 # Dockbert
@@ -7,46 +6,42 @@
 
 ## Table of Content
 
-* [Requirement](#requirement)
-* [Configuration](#configuration)
-* [Setup](#setup)
-* [Start and Stop](#start-and-stop)
-* [Basic Auth User](#basic-auth-user)
-* [Let's Encrypt](#lets-encrypt)
-* [Copyright](#copyright)
-* [License](#license)
-
+- [Requirement](#requirement)
+- [Configuration](#configuration)
+- [Setup](#setup)
+- [Start and Stop](#start-and-stop)
+- [Basic Auth User](#basic-auth-user)
+- [Let's Encrypt](#lets-encrypt)
+- [Copyright](#copyright)
+- [License](#license)
 
 ## Requirement
 
-* A linux server (e.g Debian or Ubunutu)
-* [Docker CE][docker] installed in the server
-* User are able to run docker commands
-* The Apache utils and program `htpasswd` for generates the basic auth
-
+- A linux server (e.g Debian or Ubunutu)
+- [Docker CE][docker] installed in the server
+- User are able to run docker commands
+- The Apache utils and program `htpasswd` for generates the basic auth
 
 ## Configuration
 
 The docker compose files is required some environment variables for start the Traefik service.
 
-* `DOCKBERT_DOMAIN` The domain for the dashboard
-* `DOCKBERT_CONTAINER_NAME` The container name. This is optional, default `dockbert-traefik`.
-* `DOCKBERT_USERS_FILE` The file with the user authorization (see section [Basic Auth User](#basic-auth-user))
-* `DOCKBERT_ACME_EMAIL` The email address for [Let's Encrypt][letsencrypt]
-* `DOCKBERT_ACME_PATH` The directory where saving the [Let's Encrypt][letsencrypt] the data
+- `DOCKBERT_DOMAIN` The domain for the dashboard
+- `DOCKBERT_CONTAINER_NAME` The container name. This is optional, default `dockbert-traefik`.
+- `DOCKBERT_USERS_FILE` The file with the user authorization (see section [Basic Auth User](#basic-auth-user))
+- `DOCKBERT_ACME_EMAIL` The email address for [Let's Encrypt][letsencrypt]
+- `DOCKBERT_ACME_PATH` The directory where saving the [Let's Encrypt][letsencrypt] the data
 
 > The environment variables are setting in different kind:
 >
-> * Add a file `dockbert.env` in the user home directory
-> * Set the environment variables in the bash or other initial RC files
-
+> - Add a file `dockbert.env` in the user home directory
+> - Set the environment variables in the bash or other initial RC files
 
 ## Setup
 
-* Create network **dockbert-net**. `docker network create dockbert-net`
-* Define the Environment variables
-* Add bash script `dockbert` to the **PATH** for simplify start and stop the **dockbert traefik**
-
+- Create network **dockbert-net**. `docker network create dockbert-net`
+- Define the Environment variables
+- Add bash script `dockbert` to the **PATH** for simplify start and stop the **dockbert traefik**
 
 ## Start and Stop
 
@@ -70,12 +65,11 @@ $ dockbert start
 $ dockbert stop
 ```
 
-
 ## Basic Auth User
 
 > The dashboard is secured with BasicAuth. See [Traefik BasicAuth](https://doc.traefik.io/traefik/middlewares/http/basicauth/).
 > To do this, create a file on the Docker host with apache `htpasswd`.
-> 
+>
 > The environment `DOCKBERT_USERS_FILE` is linked with this file
 
 **Example**
@@ -83,9 +77,8 @@ $ dockbert stop
 The user file `${HOME}/etc/users.passwd`.
 
 ```shell
-$ htpasswd -cb ./etc/users.passwd sarah password
+$ htpasswd -cb ${HOME}/etc/users.passwd sarah password
 ```
-
 
 ## Let's Encrypt
 
@@ -97,19 +90,19 @@ $ htpasswd -cb ./etc/users.passwd sarah password
 The directory `${HOME}/etc/traefik/acme` contains the acme.json file
 
 ```shell
-$ mkdir -p etc/traefik/acme
+$ mkdir -p ${HOME}/etc/traefik/acme
 ```
 
 ## Copyright
 
-* Docker & Docker Compose: <https://www.docker.com/>
-* Traefik: <https://doc.traefik.io/traefik/>
-* Logo: <a href="https://www.flaticon.com/free-icons/duck" title="duck icons" target="_blank">Duck icons created by Pixel perfect - Flaticon</a>
+- Docker & Docker Compose: <https://www.docker.com/>
+- Traefik: <https://doc.traefik.io/traefik/>
+- Logo: <a href="https://www.flaticon.com/free-icons/duck" title="duck icons" target="_blank">Duck icons created by Pixel perfect - Flaticon</a>
 
 ## License
 
 ```text
-Copyright 2022 Blueskyfish
+Copyright 2022 - 2024 Blueskyfish
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
